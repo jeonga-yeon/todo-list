@@ -20,12 +20,14 @@ const Boards = styled.div`
   width: 100%;
   gap: 10px;
   min-height: 200px;
+  justify-content: center;
+  align-items: center;
 `;
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
   const onDragEnd = (info: DropResult) => {
-    const { destination, source, draggableId } = info;
+    const { destination, source } = info;
     if (!destination) return;
     if (destination?.droppableId === source.droppableId) {
       setToDos((allBoards) => {
