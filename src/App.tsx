@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toDoState } from "./atoms";
 import Board from "./Components/Board";
+import DeleteItem from "./Components/DeleteItem";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,11 +25,31 @@ const Boards = styled.div`
   align-items: center;
 `;
 
+const DeleteArea = styled.div`
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 250px;
+  height: 200px;
+  background-color: pink;
+`;
+
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
   const onDragEnd = (info: DropResult) => {
     const { destination, source } = info;
     if (!destination) return;
+    if (destination.droppableId === "delete") {
+      setToDos((allBoards) => {
+        const changedBoard = [...allBoards[source.droppableId]];
+        changedBoard.splice(source.index, 1);
+        return {
+          ...allBoards,
+          [source.droppableId]: changedBoard,
+        };
+      });
+      return;
+    }
     if (destination?.droppableId === source.droppableId) {
       setToDos((allBoards) => {
         const changedBoard = [...allBoards[source.droppableId]];
@@ -65,6 +86,9 @@ function App() {
           ))}
         </Boards>
       </Wrapper>
+      <DeleteArea>
+        <DeleteItem />
+      </DeleteArea>
     </DragDropContext>
   );
 }

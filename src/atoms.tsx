@@ -16,7 +16,7 @@ interface IToDoState {
 }
 
 export const toDoState = atom<IToDoState>({
-  key: "toDo",
+  key: "listBoards",
   default: {
     "To Do": [],
     Doing: [],
