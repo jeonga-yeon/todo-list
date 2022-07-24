@@ -24,3 +24,12 @@ export const toDoState = atom<IToDoState>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const userState = atom({
+  key: "user",
+  default: {
+    name: "",
+    password: "",
+  },
+  effects_UNSTABLE: [persistAtom],
+});
