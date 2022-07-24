@@ -1,4 +1,4 @@
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toDoState } from "./atoms";
@@ -7,7 +7,6 @@ import DeleteItem from "./Components/DeleteItem";
 
 const Wrapper = styled.div`
   display: flex;
-  max-width: 680px;
   width: 100%;
   margin: 0 auto;
   justify-content: center;
@@ -18,6 +17,7 @@ const Wrapper = styled.div`
 const Boards = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  max-width: 680px;
   width: 100%;
   gap: 10px;
   min-height: 200px;
@@ -39,7 +39,15 @@ function App() {
   const onDragEnd = (info: DropResult) => {
     const { destination, source } = info;
     if (!destination) return;
-    if (destination.droppableId === "delete") {
+    if (source.droppableId === "boards") {
+      setToDos((allBoards) => {
+        const changedBoard = Object.entries(allBoards);
+        const movingBoard = changedBoard[source.index];
+        changedBoard.splice(source.index, 1);
+        changedBoard.splice(destination.index, 0, movingBoard);
+        return Object.fromEntries(changedBoard);
+      });
+    } else if (destination.droppableId === "delete") {
       setToDos((allBoards) => {
         const changedBoard = [...allBoards[source.droppableId]];
         changedBoard.splice(source.index, 1);
@@ -48,9 +56,7 @@ function App() {
           [source.droppableId]: changedBoard,
         };
       });
-      return;
-    }
-    if (destination?.droppableId === source.droppableId) {
+    } else if (destination?.droppableId === source.droppableId) {
       setToDos((allBoards) => {
         const changedBoard = [...allBoards[source.droppableId]];
         const taskObj = changedBoard[source.index];
@@ -61,8 +67,7 @@ function App() {
           [source.droppableId]: changedBoard,
         };
       });
-    }
-    if (destination.droppableId !== source.droppableId) {
+    } else if (destination.droppableId !== source.droppableId) {
       setToDos((allBoards) => {
         const sourceBoard = [...allBoards[source.droppableId]];
         const taskObj = sourceBoard[source.index];
@@ -79,13 +84,22 @@ function App() {
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Wrapper>
-        <Boards>
-          {Object.keys(toDos).map((boardId) => (
-            <Board key={boardId} boardId={boardId} toDos={toDos[boardId]} />
-          ))}
-        </Boards>
-      </Wrapper>
+      <Droppable droppableId="boards" direction="horizontal">
+        {(provided) => (
+          <Wrapper ref={provided.innerRef} {...provided.droppableProps}>
+            <Boards>
+              {Object.keys(toDos).map((boardId, index) => (
+                <Board
+                  key={boardId}
+                  boardId={boardId}
+                  toDos={toDos[boardId]}
+                  index={index}
+                />
+              ))}
+            </Boards>
+          </Wrapper>
+        )}
+      </Droppable>
       <DeleteArea>
         <DeleteItem />
       </DeleteArea>

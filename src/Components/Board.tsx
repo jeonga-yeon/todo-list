@@ -1,4 +1,4 @@
-import { Droppable } from "react-beautiful-dnd";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
@@ -49,13 +49,14 @@ const Form = styled.form`
 interface IBoardProps {
   toDos: IToDo[];
   boardId: string;
+  index: number;
 }
 
 interface IForm {
   toDo: string;
 }
 
-function Board({ toDos, boardId }: IBoardProps) {
+function Board({ toDos, boardId, index }: IBoardProps) {
   const setToDos = useSetRecoilState(toDoState);
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const onValid = ({ toDo }: IForm) => {
@@ -72,36 +73,44 @@ function Board({ toDos, boardId }: IBoardProps) {
     setValue("toDo", "");
   };
   return (
-    <Wrapper>
-      <Title>{boardId}</Title>
-      <Form onSubmit={handleSubmit(onValid)}>
-        <input
-          {...register("toDo", { required: true })}
-          type="text"
-          placeholder={`${boardId} 입력`}
-        />
-      </Form>
-      <Droppable droppableId={boardId}>
-        {(provided, snapshot) => (
-          <Area
-            isDraggingOver={snapshot.isDraggingOver}
-            isDraggingFromThis={Boolean(snapshot.draggingFromThisWith)}
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
-            {toDos.map((toDo, index) => (
-              <DraggableCard
-                key={toDo.id}
-                index={index}
-                toDoId={toDo.id}
-                toDoText={toDo.text}
-              />
-            ))}
-            {provided.placeholder}
-          </Area>
-        )}
-      </Droppable>
-    </Wrapper>
+    <Draggable draggableId={boardId} index={index}>
+      {(provided) => (
+        <Wrapper
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <Title>{boardId}</Title>
+          <Form onSubmit={handleSubmit(onValid)}>
+            <input
+              {...register("toDo", { required: true })}
+              type="text"
+              placeholder={`${boardId} 입력`}
+            />
+          </Form>
+          <Droppable droppableId={boardId}>
+            {(provided, snapshot) => (
+              <Area
+                isDraggingOver={snapshot.isDraggingOver}
+                isDraggingFromThis={Boolean(snapshot.draggingFromThisWith)}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {toDos.map((toDo, index) => (
+                  <DraggableCard
+                    key={toDo.id}
+                    index={index}
+                    toDoId={toDo.id}
+                    toDoText={toDo.text}
+                  />
+                ))}
+                {provided.placeholder}
+              </Area>
+            )}
+          </Droppable>
+        </Wrapper>
+      )}
+    </Draggable>
   );
 }
 
