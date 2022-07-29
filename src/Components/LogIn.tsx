@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { userState } from "../atoms";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
@@ -26,6 +26,7 @@ interface IForm {
 }
 
 function LogIn() {
+  const wrapper = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const {
@@ -54,8 +55,28 @@ function LogIn() {
       );
     }
   };
+  useEffect(() => {
+    const IMG_NUMBER = 3;
+
+    const paintImage = (imgNumber: number) => {
+      if (wrapper.current) {
+        const image = new Image();
+        image.src = `images/${imgNumber}.jpg`;
+        image.classList.add("bgImage");
+        wrapper.current.prepend(image);
+      }
+    };
+
+    const genRandom = () => {
+      const number = Math.floor(Math.random() * IMG_NUMBER);
+      return number;
+    };
+
+    const randomNumber = genRandom();
+    paintImage(randomNumber);
+  }, []);
   return (
-    <Wrapper>
+    <Wrapper ref={wrapper}>
       {userInfo.name === "" ? (
         <Form onSubmit={handleSubmit(onValid)}>
           <input
