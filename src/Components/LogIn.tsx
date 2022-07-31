@@ -11,12 +11,123 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: fadeIn 0.5s linear;
+  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  label {
+    padding-left: 10px;
+    font-size: 25px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #0a3d62;
+    width: 100%;
+  }
+  input {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px 20px;
+    border-radius: 30px;
+    border: none;
+    &:focus {
+      outline: none;
+      background-color: #dff9fb;
+    }
+    &:hover {
+      background-color: #dff9fb;
+    }
+  }
+  button {
+    width: 60px;
+    height: 40px;
+    border: none;
+    background-color: #22a6b3;
+    border-radius: 15px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    &:hover {
+      color: #0a3d62;
+    }
+  }
+`;
+
+const WrapConfirm = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 100vh;
+  h1 {
+    position: fixed;
+    top: 200px;
+    font-size: 70px;
+    font-weight: 600;
+    color: #0a3d62;
+  }
+`;
+
+const ConfirmForm = styled.form`
+  width: 100%;
+  padding: 30px;
+  label {
+    padding-left: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    color: #0a3d62;
+    width: 100%;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 30px;
+    border: none;
+    &:focus {
+      outline: none;
+      background-color: #dff9fb;
+    }
+    &:hover {
+      background-color: #dff9fb;
+    }
+  }
+  button {
+    width: 60px;
+    height: 50px;
+    border: none;
+    background-color: #22a6b3;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    &:hover {
+      color: #0a3d62;
+    }
+  }
 `;
 
 interface IForm {
@@ -62,7 +173,6 @@ function LogIn() {
       if (wrapper.current) {
         const image = new Image();
         image.src = `images/${imgNumber}.jpg`;
-        image.classList.add("bgImage");
         wrapper.current.prepend(image);
       }
     };
@@ -78,30 +188,46 @@ function LogIn() {
   return (
     <Wrapper ref={wrapper}>
       {userInfo.name === "" ? (
-        <Form onSubmit={handleSubmit(onValid)}>
+        <Form className="form__save" onSubmit={handleSubmit(onValid)}>
+          <label htmlFor="name">Name</label>
           <input
+            id="name"
             {...register("name", { required: true })}
             type="text"
             placeholder="이름을 입력해주세요..."
+            required
           />
+          <label htmlFor="password">Password</label>
           <input
             {...register("password", { required: true })}
             type="password"
             placeholder="비밀번호를 입력해주세요..."
+            id="password"
+            required
           />
-          <button>확인</button>
+          <button>Save</button>
         </Form>
       ) : (
-        <Form onSubmit={handleSubmit(onValidPassword)}>
+        <WrapConfirm>
           <h1>Hello {userInfo.name}</h1>
-          <input
-            {...register("password1", { required: true })}
-            type="password"
-            placeholder="비밀번호를 입력해주세요..."
-          />
-          <button>확인</button>
-          <span>{errors?.password1?.message}</span>
-        </Form>
+          <ConfirmForm
+            className="form__confirm"
+            onSubmit={handleSubmit(onValidPassword)}
+          >
+            <label htmlFor="confirm">Password</label>
+            <div>
+              <input
+                id="confirm"
+                {...register("password1", { required: true })}
+                type="password"
+                placeholder="비밀번호를 입력해주세요..."
+                required
+              />
+              <button>Enter</button>
+            </div>
+            <span>{errors?.password1?.message}</span>
+          </ConfirmForm>
+        </WrapConfirm>
       )}
     </Wrapper>
   );
