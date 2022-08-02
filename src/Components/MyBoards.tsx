@@ -12,12 +12,13 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url("boardImg/0.jpg");
 `;
 
 const Boards = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 680px;
+  max-width: 1000px;
   width: 100%;
   gap: 10px;
   min-height: 200px;
@@ -30,8 +31,7 @@ const DeleteArea = styled.div`
   bottom: 10px;
   right: 10px;
   width: 250px;
-  height: 200px;
-  background-color: pink;
+  height: 100px;
 `;
 
 function MyBoards() {
@@ -85,7 +85,7 @@ function MyBoards() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="boards" direction="horizontal">
-        {(provided) => (
+        {(provided, snapshot) => (
           <Wrapper ref={provided.innerRef} {...provided.droppableProps}>
             <Boards>
               {Object.keys(toDos).map((boardId, index) => (
@@ -97,6 +97,7 @@ function MyBoards() {
                 />
               ))}
             </Boards>
+            {provided.placeholder}
           </Wrapper>
         )}
       </Droppable>

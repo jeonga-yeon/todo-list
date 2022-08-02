@@ -4,13 +4,12 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background-color: yellow;
 `;
 
 const Area = styled.div`
   width: 100%;
   height: 100%;
-  background-color: purple;
+  background-color: transparent;
 `;
 
 const Span = styled.span`

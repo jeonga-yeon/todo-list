@@ -22,13 +22,27 @@ const Wrapper = styled.div`
   }
 `;
 
-const Form = styled.form`
+const FormContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  padding: 30px;
   justify-content: center;
   align-items: center;
+  .title {
+    position: fixed;
+    top: 80px;
+    h1 {
+      text-align: center;
+      font-size: 35px;
+      color: white;
+      font-weight: 600;
+    }
+  }
+`;
+
+const Form = styled.form`
+  width: 400px;
+  padding: 30px;
   label {
     padding-left: 10px;
     font-size: 25px;
@@ -39,6 +53,7 @@ const Form = styled.form`
   }
   input {
     width: 100%;
+    margin-top: 5px;
     margin-bottom: 20px;
     padding: 20px 20px;
     border-radius: 30px;
@@ -51,19 +66,24 @@ const Form = styled.form`
       background-color: #dff9fb;
     }
   }
-  button {
-    width: 60px;
-    height: 40px;
-    border: none;
-    background-color: #22a6b3;
-    border-radius: 15px;
-    color: white;
-    font-weight: 600;
-    font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
-    &:hover {
-      color: #0a3d62;
+  .btn__save {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    button {
+      width: 60px;
+      height: 40px;
+      border: none;
+      background-color: #22a6b3;
+      border-radius: 15px;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      &:hover {
+        color: #0a3d62;
+      }
     }
   }
 `;
@@ -114,6 +134,7 @@ const ConfirmForm = styled.form`
     }
   }
   button {
+    text-align: center;
     width: 60px;
     height: 50px;
     border: none;
@@ -188,25 +209,32 @@ function LogIn() {
   return (
     <Wrapper ref={wrapper}>
       {userInfo.name === "" ? (
-        <Form className="form__save" onSubmit={handleSubmit(onValid)}>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            {...register("name", { required: true })}
-            type="text"
-            placeholder="이름을 입력해주세요..."
-            required
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            {...register("password", { required: true })}
-            type="password"
-            placeholder="비밀번호를 입력해주세요..."
-            id="password"
-            required
-          />
-          <button>Save</button>
-        </Form>
+        <FormContainer>
+          <div className="title">
+            <h1>오늘의 할 일은 무엇인가요?</h1>
+          </div>
+          <Form className="form__save" onSubmit={handleSubmit(onValid)}>
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              {...register("name", { required: true })}
+              type="text"
+              placeholder="이름을 입력해주세요..."
+              required
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              {...register("password", { required: true })}
+              type="password"
+              placeholder="비밀번호를 입력해주세요..."
+              id="password"
+              required
+            />
+            <div className="btn__save">
+              <button>Save</button>
+            </div>
+          </Form>
+        </FormContainer>
       ) : (
         <WrapConfirm>
           <h1>Hello {userInfo.name}</h1>
