@@ -97,7 +97,7 @@ const WrapConfirm = styled.div`
   height: 100vh;
   h1 {
     position: fixed;
-    top: 200px;
+    top: 180px;
     font-size: 70px;
     font-weight: 600;
     color: #0a3d62;
@@ -148,6 +148,12 @@ const ConfirmForm = styled.form`
     &:hover {
       color: #0a3d62;
     }
+  }
+  span {
+    display: block;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: white;
   }
 `;
 

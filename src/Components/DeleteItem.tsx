@@ -6,10 +6,16 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-const Area = styled.div`
+const Area = styled.div<{ isDraggingOver: boolean }>`
   width: 100%;
   height: 100%;
-  background-color: transparent;
+  background-color: ${(props) =>
+    props.isDraggingOver ? "rgba(253, 121, 168, 0.25)" : "transparent"};
+  border-radius: 30px;
+  box-shadow: ${(props) =>
+    props.isDraggingOver
+      ? "-1px -1px 50px rgba(253, 121, 168, 0.5)"
+      : "transparent"};
 `;
 
 const Span = styled.span`
@@ -24,8 +30,12 @@ function DeleteItem() {
   return (
     <Wrapper>
       <Droppable droppableId="delete">
-        {(provided) => (
-          <Area ref={provided.innerRef} {...provided.droppableProps}>
+        {(provided, snapshot) => (
+          <Area
+            isDraggingOver={snapshot.isDraggingOver}
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
             <Span>Delete</Span>
             {provided.placeholder}
           </Area>

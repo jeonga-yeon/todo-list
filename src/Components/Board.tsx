@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   min-height: 300px;
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
 `;
 
 const Title = styled.h2`
@@ -37,6 +38,7 @@ const Area = styled.div<IAreaProps>`
   flex-grow: 1;
   transition: background-color 0.3s ease-in-out;
   padding: 20px;
+  height: 500px;
 `;
 
 const Form = styled.form`
