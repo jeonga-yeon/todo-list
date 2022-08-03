@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../atoms";
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -239,6 +240,9 @@ function LogIn() {
   }, []);
   return (
     <Wrapper ref={wrapper}>
+      <Helmet>
+        <title>로그인</title>
+      </Helmet>
       {userInfo.name === "" ? (
         <FormContainer>
           <div className="title">

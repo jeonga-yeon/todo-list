@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { toDoState } from "../atoms";
 import Board from "./Board";
 import DeleteItem from "./DeleteItem";
+import { Helmet } from "react-helmet";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -83,6 +84,9 @@ function MyBoards() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Wrapper>
+        <Helmet>
+          <title>나의 할 일</title>
+        </Helmet>
         <Droppable droppableId="boards" direction="horizontal" type="board">
           {(provided, snapshot) => (
             <Boards ref={provided.innerRef} {...provided.droppableProps}>

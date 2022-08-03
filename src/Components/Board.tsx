@@ -40,6 +40,14 @@ const Area = styled.div<IAreaProps>`
   transition: background-color 0.3s ease-in-out;
   padding: 20px;
   height: 500px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(189, 195, 199, 0.7);
+    border-radius: 4px;
+  }
 `;
 
 const Form = styled.form`
