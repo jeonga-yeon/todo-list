@@ -6,6 +6,7 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
+  position: absolute;
   width: 100%;
   height: 100vh;
   display: flex;

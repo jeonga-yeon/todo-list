@@ -1,0 +1,23 @@
+.transitions-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: calc(var(--vw, 1vw) * 100);
+  height: 100vh;
+}
+.next-enter {
+  transform: translateY(100%);
+}
+
+.next-enter-active {
+  transform: translateY(0);
+  transition: transform 300ms ease-in-out;
+}
+
+.next-exit {
+  transform: translateY(0);
+}
+
+.next-exit-active {
+  transform: translateY(-100%);
+  transition: transform 300ms ease-in-out;
+}

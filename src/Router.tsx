@@ -1,15 +1,20 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import LogIn from "./Components/LogIn";
 import MyBoards from "./Components/MyBoards";
+import "./router.css";
 
 function Router() {
+  const location = useLocation();
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LogIn />} />
-        <Route path="/boards" element={<MyBoards />} />
-      </Routes>
-    </BrowserRouter>
+    <TransitionGroup className="transitions-wrapper">
+      <CSSTransition key={location.pathname} classNames={"next"} timeout={300}>
+        <Routes location={location}>
+          <Route path="/" element={<LogIn />} />
+          <Route path="/boards" element={<MyBoards />} />
+        </Routes>
+      </CSSTransition>
+    </TransitionGroup>
   );
 }
 

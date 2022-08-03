@@ -6,6 +6,7 @@ import Board from "./Board";
 import DeleteItem from "./DeleteItem";
 
 const Wrapper = styled.div`
+  position: absolute;
   display: flex;
   width: 100%;
   margin: 0 auto;
