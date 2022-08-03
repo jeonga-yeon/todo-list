@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { userState } from "../atoms";
@@ -22,6 +22,28 @@ const Wrapper = styled.div`
   }
 `;
 
+const titleAnimation = keyframes`
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: none;
+  }
+`;
+
+const apperHello = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+`;
+
 const FormContainer = styled.div`
   width: 100%;
   display: flex;
@@ -30,7 +52,8 @@ const FormContainer = styled.div`
   align-items: center;
   .title {
     position: fixed;
-    top: 80px;
+    top: 100px;
+    animation: ${titleAnimation} 2s ease-in-out infinite;
     h1 {
       text-align: center;
       font-size: 35px;
@@ -101,6 +124,7 @@ const WrapConfirm = styled.div`
     font-size: 70px;
     font-weight: 600;
     color: #0a3d62;
+    animation: ${apperHello} 3s ease-in-out forwards;
   }
 `;
 

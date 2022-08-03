@@ -21,6 +21,7 @@ const Title = styled.h2`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 18px;
+  color: #0a3d62;
 `;
 
 interface IAreaProps {
@@ -31,9 +32,9 @@ interface IAreaProps {
 const Area = styled.div<IAreaProps>`
   background-color: ${(props) =>
     props.isDraggingOver
-      ? "#dfe6e9"
+      ? "rgba(255, 234, 167, 0.4)"
       : props.isDraggingFromThis
-      ? "#b2bec3"
+      ? "rgba(116, 185, 255, 0.4)"
       : "transparent"};
   flex-grow: 1;
   transition: background-color 0.3s ease-in-out;
@@ -45,6 +46,19 @@ const Form = styled.form`
   width: 100%;
   input {
     width: 100%;
+    height: 30px;
+    border: none;
+    padding-left: 20px;
+    &::placeholder {
+      color: #0a3d62;
+    }
+    &:focus {
+      outline: none;
+      background-color: #dff9fb;
+    }
+    &:hover {
+      background-color: #dff9fb;
+    }
   }
 `;
 
