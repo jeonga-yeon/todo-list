@@ -5,6 +5,7 @@ import { toDoState } from "../atoms";
 import Board from "./Board";
 import DeleteItem from "./DeleteItem";
 import { Helmet } from "react-helmet";
+import CreateBoard from "./CreateBoard";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -20,7 +21,6 @@ const Wrapper = styled.div`
 const Boards = styled.div`
   display: flex;
   min-height: 200px;
-  width: 100%;
   justify-content: center;
   align-items: center;
 `;
@@ -31,6 +31,14 @@ const DeleteArea = styled.div`
   right: 10px;
   width: 250px;
   height: 80px;
+`;
+
+const CreateBoardForm = styled.div`
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 250px;
+  height: 60px;
 `;
 
 function MyBoards() {
@@ -88,7 +96,7 @@ function MyBoards() {
           <title>나의 할 일</title>
         </Helmet>
         <Droppable droppableId="boards" direction="horizontal" type="board">
-          {(provided, snapshot) => (
+          {(provided) => (
             <Boards ref={provided.innerRef} {...provided.droppableProps}>
               {Object.keys(toDos).map((boardId, index) => (
                 <Board
@@ -106,6 +114,9 @@ function MyBoards() {
       <DeleteArea>
         <DeleteItem />
       </DeleteArea>
+      <CreateBoardForm>
+        <CreateBoard />
+      </CreateBoardForm>
     </DragDropContext>
   );
 }

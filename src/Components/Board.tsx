@@ -4,8 +4,11 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { IToDo, toDoState } from "../atoms";
 import DraggableCard from "./DraggableCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
+  position: relative;
   width: 300px;
   padding-top: 10px;
   background-color: ${(props) => props.theme.boardColor};
@@ -14,6 +17,15 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 10px;
+  .icon__times {
+    position: absolute;
+    right: 10px;
+    color: transparent;
+    &:hover {
+      color: #bdc3c7;
+    }
+    font-size: 25px;
+  }
 `;
 
 const Title = styled.h2`
@@ -96,6 +108,13 @@ function Board({ toDos, boardId, index }: IBoardProps) {
     });
     setValue("toDo", "");
   };
+  const onClick = (boardId: string) => {
+    setToDos((allBoards) => {
+      const deletedBoard = { ...allBoards };
+      delete deletedBoard[boardId];
+      return deletedBoard;
+    });
+  };
   return (
     <Draggable draggableId={boardId} index={index}>
       {(provided) => (
@@ -105,6 +124,11 @@ function Board({ toDos, boardId, index }: IBoardProps) {
           {...provided.dragHandleProps}
         >
           <Title>{boardId}</Title>
+          <FontAwesomeIcon
+            icon={faTimes}
+            className="icon__times"
+            onClick={() => onClick(boardId)}
+          />
           <Form onSubmit={handleSubmit(onValid)}>
             <input
               {...register("toDo", { required: true })}
