@@ -10,7 +10,7 @@ const Area = styled.div<{ isDraggingOver: boolean }>`
   width: 100%;
   height: 100%;
   background-color: ${(props) =>
-    props.isDraggingOver ? "rgba(253, 121, 168, 0.3)" : "transparent"};
+    props.isDraggingOver ? "rgba(85, 239, 196, 0.5)" : "transparent"};
   border-radius: 30px;
 `;
 

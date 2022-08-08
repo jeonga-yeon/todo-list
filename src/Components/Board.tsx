@@ -46,7 +46,7 @@ const Area = styled.div<IAreaProps>`
     props.isDraggingOver
       ? "rgba(255, 234, 167, 0.4)"
       : props.isDraggingFromThis
-      ? "rgba(116, 185, 255, 0.4)"
+      ? "rgba(248, 165, 194, 0.4)"
       : "transparent"};
   flex-grow: 1;
   transition: background-color 0.3s ease-in-out;

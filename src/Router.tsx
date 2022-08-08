@@ -8,7 +8,7 @@ function Router() {
   const location = useLocation();
   return (
     <TransitionGroup className="transitions-wrapper">
-      <CSSTransition key={location.pathname} classNames={"next"} timeout={300}>
+      <CSSTransition key={location.pathname} classNames={"next"} timeout={1000}>
         <Routes location={location}>
           <Route path="/" element={<LogIn />} />
           <Route path="/boards" element={<MyBoards />} />
