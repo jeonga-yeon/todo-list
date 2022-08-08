@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   .next__div {
     position: fixed;
     width: 60px;
-    height: 560px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,7 +68,7 @@ const DeleteArea = styled.div`
   bottom: 10px;
   right: 10px;
   width: 250px;
-  height: 80px;
+  height: 70px;
 `;
 
 const CreateBoardForm = styled.div`

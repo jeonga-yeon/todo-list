@@ -32,7 +32,7 @@ const Form = styled.form`
     height: 25px;
     padding: 5px;
     color: white;
-    background-color: rgba(85, 239, 196, 1);
+    background-color: rgba(99, 205, 218, 1);
     border-radius: 5px;
   }
 `;
