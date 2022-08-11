@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Kanban ToDo-List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+할 일을 카테고리별로 나누어 체크할 수 있는 칸반 투두리스트  
+//링크첨부
+<br />
+<br />
 
-## Available Scripts
+✅ 비밀번호 설정  
+사용자의 이름과 패스워드를 입력해 데이터를 저장  
+![login](https://user-images.githubusercontent.com/76932302/184075049-ebec6671-9eff-45c8-bf2c-d57f243e70e2.gif)
 
-In the project directory, you can run:
+<br />
+✅ 로그인    
+<br />
+패스워드를 입력해 사용자 정보와 일치하면 칸반 보드로 이동
 
-### `npm start`
+![password](https://user-images.githubusercontent.com/76932302/184075488-d8ba67be-c509-485a-86d6-ab5512adaeaf.gif)
+<br />  
+✅ 투두 리스트
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 카테고리별로 할 일을 체크할 수 있다. To Do, Doing, Done 보드가 기본 설정
+  ![투두](https://user-images.githubusercontent.com/76932302/184078726-bad30cf9-8e9f-46b1-9841-02c94e0d30eb.gif)
+- 보드의 생성, 삭제, 순서 교체
+  ![투두1](https://user-images.githubusercontent.com/76932302/184087475-3c711b08-ded2-4653-bcbb-f9107d88c979.gif)
+  ![투두2](https://user-images.githubusercontent.com/76932302/184087707-65473203-82e7-43c6-8deb-af55770ee97d.gif)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br />
+<hr />
+파일 구조
 
-### `npm test`
+    src
+      - components
+        - Board.tsx
+        - CreateBoard.tsx
+        - DeleteItem.tsx
+        - DraggableCard.tsx
+        - logIn.tsx
+        - MyBoards.tsx
+      - App.tsx
+      - atoms.tsx
+      - index.tsx
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br />
 
-### `npm run build`
+사용 기술
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+React, Typescript, Recoil, styled-components
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br />

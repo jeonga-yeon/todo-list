@@ -60,6 +60,7 @@ function CreateBoard() {
         id="board__title"
         type="text"
         placeholder="보드 제목 입력..."
+        autoComplete="off"
       />
       <button>Add</button>
     </Form>

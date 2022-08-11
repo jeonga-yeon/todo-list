@@ -256,6 +256,7 @@ function LogIn() {
               type="text"
               placeholder="이름을 입력해주세요..."
               required
+              autoComplete="off"
             />
             <label htmlFor="password">Password</label>
             <input

@@ -9,7 +9,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   position: relative;
-  width: 300px;
+  width: 290px;
   padding-top: 10px;
   background-color: rgba(245, 246, 250, 0.4);
   border-radius: 5px;
@@ -51,7 +51,7 @@ const Area = styled.div<IAreaProps>`
   flex-grow: 1;
   transition: background-color 0.3s ease-in-out;
   padding: 20px;
-  height: 500px;
+  height: 450px;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 7px;
@@ -134,6 +134,7 @@ function Board({ toDos, boardId, index }: IBoardProps) {
               {...register("toDo", { required: true })}
               type="text"
               placeholder={`${boardId} 입력`}
+              autoComplete="off"
             />
           </Form>
           <Droppable droppableId={boardId}>

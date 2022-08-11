@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import LogIn from "./Components/LogIn";
-import MyBoards from "./Components/MyBoards";
+import LogIn from "./components/LogIn";
+import MyBoards from "./components/MyBoards";
 import "./router.css";
 
 function Router() {
