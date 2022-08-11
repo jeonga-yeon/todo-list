@@ -1,7 +1,7 @@
 # Kanban ToDo-List
 
 할 일을 카테고리별로 나누어 체크할 수 있는 칸반 투두리스트  
-//링크첨부
+https://joyfuldev.github.io/todo-list/
 <br />
 <br />
 
@@ -25,7 +25,6 @@
   ![투두2](https://user-images.githubusercontent.com/76932302/184087707-65473203-82e7-43c6-8deb-af55770ee97d.gif)
 
 <br />
-<hr />
 파일 구조
 
     src
