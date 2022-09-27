@@ -225,7 +225,8 @@ function LogIn() {
     const paintImage = (imgNumber: number) => {
       if (wrapper.current) {
         const image = new Image();
-        image.src = `images/${imgNumber}.jpg`;
+        image.src = `todo-list/images/${imgNumber}.jpg`;
+        console.log(image.src);
         wrapper.current.prepend(image);
       }
     };
