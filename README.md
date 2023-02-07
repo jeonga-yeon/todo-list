@@ -1,7 +1,7 @@
 # Kanban ToDo-List
 
 할 일을 카테고리별로 나누어 체크할 수 있는 칸반 투두리스트  
-https://joyfuldev.github.io/todo-list/
+https://jeonga-yeon.github.io/todo-list/
 <br />
 <br />
 
